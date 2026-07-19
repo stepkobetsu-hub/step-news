@@ -13,6 +13,8 @@
 
   const list = document.getElementById("news-list");
   const status = document.getElementById("news-status");
+  const mobileTabs = document.getElementById("mobile-news-tabs");
+  const mobileDetail = document.getElementById("mobile-news-detail");
   let completed = false;
 
   function escapeHtml(value) {
@@ -182,6 +184,94 @@
     ].join("");
   }
 
+
+  function entryViewModel(entry) {
+    const title = (entry.title && entry.title.$t) || "お知らせ";
+    const published = dateValue(entry);
+    const entryLabels = labels(entry);
+    const category = entryLabels.find(function (label) {
+      return !config.importantLabels.includes(label);
+    }) || "";
+    return {
+      title: title,
+      published: published,
+      category: category,
+      summary: truncate(plainText(entryHtml(entry)), config.summaryLength + 30),
+      url: articleUrl(entry),
+      image: imageUrl(entry)
+    };
+  }
+
+  function mobileTabMarkup(item, index) {
+    const media = item.image
+      ? '<img class="mobile-news__tab-image" src="' + escapeHtml(item.image) +
+        '" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">'
+      : '<span class="mobile-news__tab-fallback">STEP<br>NEWS</span>';
+
+    return [
+      '<button class="mobile-news__tab" type="button" role="tab" ',
+      'id="mobile-news-tab-', index, '" ',
+      'aria-controls="mobile-news-panel" ',
+      'aria-selected="', index === 0 ? 'true' : 'false', '" ',
+      'data-index="', index, '">',
+      media,
+      '<span class="mobile-news__tab-title">', escapeHtml(item.title), '</span>',
+      '</button>'
+    ].join("");
+  }
+
+  function mobileDetailMarkup(item) {
+    const media = item.image
+      ? '<img class="mobile-feature__image" src="' + escapeHtml(item.image) +
+        '" alt="' + escapeHtml(item.title) +
+        '" loading="eager" decoding="async" referrerpolicy="no-referrer">'
+      : '<div class="mobile-feature__fallback">STEP NEWS</div>';
+
+    return [
+      '<article id="mobile-news-panel" class="mobile-feature" role="tabpanel">',
+      '<div class="mobile-feature__media">', media, '</div>',
+      '<div class="mobile-feature__body">',
+      '<div class="mobile-feature__meta">',
+      '<time class="mobile-feature__date" datetime="', escapeHtml(item.published), '">',
+      escapeHtml(dateText(item.published)), '</time>',
+      item.category
+        ? '<span class="mobile-feature__category">' + escapeHtml(item.category) + '</span>'
+        : '',
+      '</div>',
+      '<h2 class="mobile-feature__title">', escapeHtml(item.title), '</h2>',
+      '<p class="mobile-feature__summary">',
+      escapeHtml(item.summary || "詳しい内容は記事をご覧ください。"),
+      '</p>',
+      '<a class="mobile-feature__link" href="', escapeHtml(item.url),
+      '" target="_blank" rel="noopener noreferrer">詳しく見る</a>',
+      '</div>',
+      '</article>'
+    ].join("");
+  }
+
+  function renderMobile(entries) {
+    if (!mobileTabs || !mobileDetail) return;
+
+    const items = entries.slice(0, 4).map(entryViewModel);
+    if (!items.length) return;
+
+    mobileTabs.innerHTML = items.map(mobileTabMarkup).join("");
+    mobileDetail.innerHTML = mobileDetailMarkup(items[0]);
+
+    mobileTabs.addEventListener("click", function (event) {
+      const button = event.target.closest(".mobile-news__tab");
+      if (!button) return;
+
+      const index = Number(button.dataset.index);
+      if (!Number.isInteger(index) || !items[index]) return;
+
+      mobileTabs.querySelectorAll(".mobile-news__tab").forEach(function (tab) {
+        tab.setAttribute("aria-selected", tab === button ? "true" : "false");
+      });
+      mobileDetail.innerHTML = mobileDetailMarkup(items[index]);
+    });
+  }
+
   function showMessage(message) {
     if (!status) return;
     status.hidden = false;
@@ -201,6 +291,7 @@
     }
 
     list.innerHTML = prepared.map(card).join("");
+    renderMobile(prepared);
     status.hidden = true;
   }
 
