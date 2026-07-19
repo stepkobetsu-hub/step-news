@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>STEPからのお知らせ</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="news" aria-labelledby="news-title">
+    <div class="news__inner">
+      <header class="news__header">
+        <p class="news__eyebrow">NEWS &amp; TOPICS</p>
+        <h1 id="news-title" class="news__title">STEPからのお知らせ</h1>
+        <p class="news__lead">教室からの最新情報をお届けします</p>
+      </header>
+
+      <div id="news-status" class="news__status" role="status">
+        お知らせを読み込んでいます…
+      </div>
+
+      <section id="news-list" class="news__grid" aria-live="polite" aria-label="新着記事一覧"></section>
+
+      <div class="news__footer">
+        <a class="news__all" href="https://stepkobetsublog.blogspot.com/" target="_blank" rel="noopener noreferrer">
+          お知らせ一覧を見る
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    window.STEP_NEWS_CONFIG = {
+      blogUrl: "https://stepkobetsublog.blogspot.com",
+      maxResults: 6,
+      newDays: 5,
+      summaryLength: 92
+    };
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>
