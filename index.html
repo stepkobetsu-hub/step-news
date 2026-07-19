@@ -4,8 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="light">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="個別指導STEPからの最新のお知らせ">
   <title>STEPからのお知らせ</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://stepkobetsublog.blogspot.com">
+  <link rel="stylesheet" href="styles.css?v=2.0.0">
 </head>
 <body>
   <main class="news" aria-labelledby="news-title">
@@ -16,14 +19,18 @@
         <p class="news__lead">教室からの最新情報をお届けします</p>
       </header>
 
-      <div id="news-status" class="news__status" role="status">
+      <div id="news-status" class="news__status" role="status" aria-live="polite">
+        <span class="news__spinner" aria-hidden="true"></span>
         お知らせを読み込んでいます…
       </div>
 
       <section id="news-list" class="news__grid" aria-live="polite" aria-label="新着記事一覧"></section>
 
       <div class="news__footer">
-        <a class="news__all" href="https://stepkobetsublog.blogspot.com/" target="_blank" rel="noopener noreferrer">
+        <a class="news__all"
+           href="https://stepkobetsublog.blogspot.com/"
+           target="_blank"
+           rel="noopener noreferrer">
           お知らせ一覧を見る
         </a>
       </div>
@@ -35,9 +42,12 @@
       blogUrl: "https://stepkobetsublog.blogspot.com",
       maxResults: 6,
       newDays: 5,
-      summaryLength: 92
+      summaryLength: 100,
+      timeoutMs: 15000,
+      importantLabels: ["重要", "重要なお知らせ"],
+      hiddenLabels: []
     };
   </script>
-  <script src="app.js"></script>
+  <script src="app.js?v=2.0.0"></script>
 </body>
 </html>
