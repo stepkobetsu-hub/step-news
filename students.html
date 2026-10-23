@@ -33,7 +33,7 @@
            href="https://stepkobetsublog.blogspot.com/"
            target="_blank"
            rel="noopener noreferrer">
-          塾生用ブログをもっと見る
+          お知らせ一覧を開く →
         </a>
       </div>
     </div>
@@ -52,5 +52,21 @@
     };
   </script>
   <script src="app.js?v=2.1.1"></script>
+  <script>
+    (() => {
+      const sendHeight = () => {
+        const height = Math.ceil(Math.max(
+          document.documentElement.scrollHeight,
+          document.body ? document.body.scrollHeight : 0
+        ));
+        window.parent.postMessage({ type: "step-student-news-height", height }, "*");
+      };
+      window.addEventListener("load", sendHeight);
+      if ("ResizeObserver" in window) {
+        new ResizeObserver(sendHeight).observe(document.documentElement);
+      }
+      [100, 500, 1200, 2500].forEach(ms => setTimeout(sendHeight, ms));
+    })();
+  </script>
 </body>
 </html>
