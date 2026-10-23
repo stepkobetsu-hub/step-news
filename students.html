@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex,follow">
+  <meta name="description" content="個別指導STEPの塾生・保護者向けお知らせ">
+  <title>塾生・保護者向けのお知らせ | 個別指導STEP</title>
+  <link rel="preconnect" href="https://stepkobetsublog.blogspot.com">
+  <link rel="stylesheet" href="styles.css?v=2.1.0">
+</head>
+<body>
+  <main class="news" aria-labelledby="news-title">
+    <div class="news__inner">
+      <header class="news__header">
+        <div>
+          <p class="news__eyebrow">STEP STUDENT / NEWS</p>
+          <h1 id="news-title" class="news__title">塾生・保護者向けのお知らせ</h1>
+        </div>
+        <p class="news__lead">教室からの連絡や学習に関するお知らせを掲載しています</p>
+      </header>
+
+      <div id="news-status" class="news__status" role="status" aria-live="polite">
+        <span class="news__spinner" aria-hidden="true"></span>
+        お知らせを読み込んでいます…
+      </div>
+
+      <section id="news-list" class="news__grid" aria-live="polite" aria-label="塾生・保護者向けのお知らせ一覧"></section>
+
+      <div class="news__footer">
+        <a class="news__all"
+           href="https://stepkobetsublog.blogspot.com/"
+           target="_blank"
+           rel="noopener noreferrer">
+          塾生用ブログをもっと見る
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    window.STEP_NEWS_CONFIG = {
+      blogUrl: "https://stepkobetsublog.blogspot.com",
+      maxResults: 6,
+      newDays: 5,
+      summaryLength: 100,
+      timeoutMs: 15000,
+      importantLabels: ["重要", "重要なお知らせ"],
+      hiddenLabels: []
+    };
+  </script>
+  <script src="app.js?v=2.1.0"></script>
+</body>
+</html>
