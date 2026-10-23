@@ -189,14 +189,14 @@ body {
   padding: 10px 22px;
   border: 1px solid #c7d6e4;
   border-radius: 6px;
-  background: var(--step-blue);
+  background: #256d5a;
   color: #fff;
   font-size: 13px;
   font-weight: 850;
   text-decoration: none;
   transition: transform .18s ease, background .18s ease;
 }
-.news__all:hover { background: var(--step-blue-light); transform: translateY(-1px); }
+.news__all:hover { background: #2f806b; transform: translateY(-1px); }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (max-width: 760px) {
   .news { padding: 22px 15px 25px; }
