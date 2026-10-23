@@ -1,11 +1,11 @@
 # STEP新着情報 Version 2
 
-Google Blogger の記事を、Wixホームページ内に写真付きカードとして表示するための
+外部向け告知Bloggerの記事だけを、Wixホームページ内に写真付き記事カードとして表示するための
 GitHub Pages用ファイル一式です。
 
-## 対象ブログ
+## 対象ブログ（外部向け・広告宣伝）
 
-https://stepkobetsublog.blogspot.com/
+https://stepkobetsukokuchi.blogspot.com/
 
 ## ファイル
 
