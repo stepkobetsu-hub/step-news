@@ -8,7 +8,8 @@
     summaryLength: 100,
     timeoutMs: 15000,
     importantLabels: ["重要", "重要なお知らせ"],
-    hiddenLabels: []
+    hiddenLabels: [],
+    displayHiddenLabels: []
   }, window.STEP_NEWS_CONFIG || {});
 
   const list = document.getElementById("news-list");
@@ -142,7 +143,8 @@
     const entryLabels = labels(entry);
     const important = hasIntersection(entryLabels, config.importantLabels);
     const category = entryLabels.find(function (label) {
-      return !config.importantLabels.includes(label);
+      return !config.importantLabels.includes(label) &&
+        !config.displayHiddenLabels.includes(label);
     }) || "";
     const summary = truncate(plainText(entryHtml(entry)), config.summaryLength);
     const url = articleUrl(entry);
