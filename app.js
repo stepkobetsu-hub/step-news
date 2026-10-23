@@ -2,7 +2,7 @@
   "use strict";
 
   const config = Object.assign({
-    blogUrl: "https://stepkobetsublog.blogspot.com",
+    blogUrl: "https://stepkobetsukokuchi.blogspot.com",
     maxResults: 6,
     newDays: 5,
     summaryLength: 100,
