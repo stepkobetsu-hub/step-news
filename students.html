@@ -55,15 +55,20 @@
   <script>
     (() => {
       const sendHeight = () => {
-        const height = Math.ceil(Math.max(
-          document.documentElement.scrollHeight,
-          document.body ? document.body.scrollHeight : 0
-        ));
+        const content = document.querySelector(".news__inner");
+        const container = document.querySelector(".news");
+        if (!content || !container) return;
+        const style = getComputedStyle(container);
+        const height = Math.ceil(
+          content.getBoundingClientRect().height +
+          parseFloat(style.paddingTop) +
+          parseFloat(style.paddingBottom)
+        );
         window.parent.postMessage({ type: "step-student-news-height", height }, "*");
       };
       window.addEventListener("load", sendHeight);
       if ("ResizeObserver" in window) {
-        new ResizeObserver(sendHeight).observe(document.documentElement);
+        new ResizeObserver(sendHeight).observe(document.querySelector(".news__inner"));
       }
       [100, 500, 1200, 2500].forEach(ms => setTimeout(sendHeight, ms));
     })();
