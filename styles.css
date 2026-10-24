@@ -19,7 +19,6 @@ body {
 }
 .news {
   width: 100%;
-  min-height: 100%;
   padding: 26px 22px 30px;
   background: linear-gradient(145deg, #f1f6fb 0%, #f8fafc 60%, #edf3f8 100%);
 }
