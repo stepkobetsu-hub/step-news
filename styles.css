@@ -198,19 +198,19 @@ body {
 .news__all:hover { background: #2f806b; transform: translateY(-1px); }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (max-width: 760px) {
-  .news { padding: 22px 15px 25px; }
+  .news { padding: 18px 6px 14px; }
   .news__header { align-items: start; flex-direction: column; gap: 7px; }
-  .news__grid { grid-template-columns: 1fr; gap: 10px; }
+  .news__grid { grid-template-columns: 1fr; gap: 8px; }
 }
 @media (max-width: 480px) {
-  .news { padding: 18px 10px 22px; }
-  .news__header { margin-bottom: 13px; padding-bottom: 10px; }
+  .news { padding: 18px 4px 12px; }
+  .news__header { margin-bottom: 11px; padding-bottom: 9px; }
   .news__lead { font-size: 12px; }
   .card__link { min-height: 122px; grid-template-columns: 105px minmax(0, 1fr); }
   .card__media, .card__image, .card__fallback { min-height: 122px; }
-  .card__body { padding: 10px 11px 9px; }
-  .card__title { font-size: 13px; }
-  .card__summary { font-size: 10px; -webkit-line-clamp: 2; }
+  .card__body { padding: 10px 8px 9px; }
+  .card__title { font-size: 12px; line-height: 1.4; -webkit-line-clamp: 3; }
+  .card__summary { font-size: 10px; -webkit-line-clamp: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
   .news__spinner { animation: none; }
